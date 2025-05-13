@@ -1,0 +1,89 @@
+ACCUKNOX Assessment Submission
+Overview
+This repository contains my solutions for the ACCUKNOX assessment, which includes a Product Requirements Document (PRD) for a Container Vulnerability Scanner, Kubernetes security scan findings, and a Go web application deployed on Kubernetes.
+Problem Statement 1: Container Vulnerability Scanner PRD
+I've created a comprehensive Product Requirements Document that outlines a solution for scanning container images and visualizing vulnerabilities. The document addresses the core user needs of understanding which container images have vulnerabilities, their severity levels, and identifying which images require immediate remediation.
+Key Components:
+
+Detailed user personas (DevOps Engineers, Security Analysts, Engineering Managers)
+Functional and non-functional requirements
+User stories and success metrics
+Low-fidelity wireframes illustrating the user interface
+
+Wireframes
+The Low-Fidelity Wireframe.png in the images directory shows the proposed user interface with:
+
+Dashboard view displaying vulnerability counts by severity
+Detail view for examining specific vulnerability information
+Navigation between views and action capabilities
+
+Problem Statement 2: Kubernetes Security Scan
+I've performed a security scan on a local Kubernetes cluster using Kubescape. The findings are documented in the findings.json file which contains detailed information about security vulnerabilities and misconfigurations in the Kubernetes deployment.
+Problem Statement 3: Go Web Application on Kubernetes
+I've developed a simple Go web application that displays the current date and time, containerized it with Docker, and deployed it to Kubernetes with two replicas as specified in the requirements.
+Implementation Details:
+
+main.go - Go application that serves the current date and time
+Dockerfile - Container configuration for the application
+k8s/ directory containing:
+
+deployment.yaml - Kubernetes deployment with 2 replicas
+service.yaml - Kubernetes service for exposing the application
+
+
+
+Exposing the Application (Step #3)
+The application has been successfully exposed using a LoadBalancer service:
+
+$ kubectl get svc time-app-svc
+NAME           TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+time-app-svc   LoadBalancer   10.105.118.82   <pending>     80:32381/TCP   160m
+
+Notes:
+
+When running in cloud environments (GCP, AWS, Azure), the EXTERNAL-IP would be automatically provisioned
+For local Kubernetes clusters like Docker Desktop, the EXTERNAL-IP remains in "pending" state
+The service is also accessible via NodePort 32381
+
+Accessing the Application
+
+Local testing: kubectl port-forward svc/time-app-svc 8080:80
+Local external access: http://localhost:32381
+Cloud environments: Would be accessible via the LoadBalancer's external IP
+
+Technical Approach
+For this assessment, I approached each problem as follows:
+
+Container Vulnerability Scanner PRD:
+
+Analyzed user requirements and identified key personas
+Developed comprehensive requirements based on security best practices
+Created wireframes focused on usability and efficient vulnerability management
+
+
+Kubernetes Security Scan:
+
+Set up a local Kubernetes cluster using Docker Desktop
+Used Kubescape for comprehensive security scanning
+Exported findings to JSON format for analysis
+
+
+Go Web Application:
+
+Developed a simple, efficient Go application to display current date and time
+Containerized using Docker best practices
+Deployed to Kubernetes using declarative approach with proper resource configuration
+Exposed the service using a LoadBalancer type service for external access
+
+
+
+Skills Demonstrated
+This assessment showcases my abilities in:
+
+Product requirement documentation
+Understanding of container security concepts
+Kubernetes deployment and security
+Go programming
+Docker containerization
+Technical documentation
+

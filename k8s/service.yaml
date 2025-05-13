@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: time-app-svc
+spec:
+  selector:
+    app: time-app
+  ports:
+    - port: 80
+      targetPort: 8080
+  # On a cloud cluster use LoadBalancer to get a public IP
+  type: LoadBalancer
+  # For a purely local cluster you can use:
+  # type: NodePort
+  # nodePort: 30080
